@@ -2,15 +2,8 @@ import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
-  const navItems = (
-    <>
-      <li>
-        <Link href="">One</Link>
-      </li>
-    </>
-  );
   return (
-    <div className="navbar bg-primary">
+    <div className="navbar bg-primary text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -57,7 +50,10 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="">One</Link>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/featured-products">Featured Category</Link>
           </li>
           <li tabIndex={0}>
             <details>
