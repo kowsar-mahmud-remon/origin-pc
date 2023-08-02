@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
 import RootLayout from "@/components/Layout/RootLayout";
 import ProductsCard from "@/components/ProductsCard";
+import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,9 +39,10 @@ export default function Home({ allProducts }: any) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:5000/featured-products");
+  const res = await fetch(
+    "https://origin-pc-server.vercel.app/featured-products"
+  );
   const data = await res.json();
-  // console.log(data);
   return {
     props: {
       allProducts: data,

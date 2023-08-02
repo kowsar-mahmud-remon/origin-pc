@@ -4,7 +4,6 @@ import Image from "next/image";
 import React from "react";
 
 const ProductsDetails = ({ allProducts }: any) => {
-  console.log({ allProducts });
   return (
     <div className="my-20 px-5 flex justify-center">
       <div className="card card-compact shadow-xl lg:w-[50%]">
@@ -47,9 +46,10 @@ const ProductsDetails = ({ allProducts }: any) => {
 export default ProductsDetails;
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/featured-products");
+  const res = await fetch(
+    "https://origin-pc-server.vercel.app/featured-products"
+  );
   const products = await res.json();
-  console.log({ products });
 
   const paths = products?.data?.map((product: any) => ({
     params: { id: product._id },
@@ -60,14 +60,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const { params } = context;
-  console.log({ params });
   const res = await fetch(
-    `http://localhost:5000/featured-products/products-details/${params.id}`
+    `https://origin-pc-server.vercel.app/featured-products/products-details/${params.id}`
   );
 
-  // const res = await fetch("http://localhost:5000/featured-products");
   const data = await res.json();
-  // console.log(data);
   return {
     props: {
       allProducts: data,

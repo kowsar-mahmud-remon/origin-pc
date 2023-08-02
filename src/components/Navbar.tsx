@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { useSession, signOut } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   return (
     <div className="navbar bg-primary text-white">
       <div className="navbar-start">
@@ -27,28 +30,59 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a>Parent</a>
+              <Link href="/featured-products">Featured Category</Link>
+            </li>
+
+            <li>
+              <a>Categories</a>
               <ul className="p-2">
                 <li>
-                  <a>Submenu 1</a>
+                  <Link href="">CPU / Processor</Link>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <Link href="">Motherboard</Link>
+                </li>
+                <li>
+                  <Link href="">RAM</Link>
+                </li>
+                <li>
+                  <Link href="">Power Supply Unit</Link>
+                </li>
+                <li>
+                  <Link href="">Storage Device</Link>
+                </li>
+                <li>
+                  <Link href="">Monitor</Link>
+                </li>
+                <li>
+                  <Link href="">Others</Link>
                 </li>
               </ul>
             </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {session?.user ? (
+              <button onClick={() => signOut()} className="btn btn-error">
+                Logout
+              </button>
+            ) : (
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
+            )}
+            <Link href="/pc-builder" className="btn">
+              PC Builder
+            </Link>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">ORIGIN PC</a>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          ORIGIN PC
+        </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1  text-lg">
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -83,13 +117,21 @@ const Navbar = () => {
               </ul>
             </details>
           </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+          {session?.user ? (
+            <button onClick={() => signOut()} className="btn btn-error">
+              Logout
+            </button>
+          ) : (
+            <li>
+              <Link href="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">PC Builder</a>
+        <Link href="/pc-builder" className="btn">
+          PC Builder
+        </Link>
       </div>
     </div>
   );

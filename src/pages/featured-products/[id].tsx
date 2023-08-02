@@ -4,7 +4,6 @@ import ProductsCard from "@/components/ProductsCard";
 import React from "react";
 
 const FeaturedCategory = ({ allProducts }: any) => {
-  console.log({ allProducts });
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-20 px-5">
       {allProducts?.data?.map((product: any) => (
@@ -18,9 +17,10 @@ const FeaturedCategory = ({ allProducts }: any) => {
 export default FeaturedCategory;
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/featured-products");
+  const res = await fetch(
+    "https://origin-pc-server.vercel.app/featured-products"
+  );
   const products = await res.json();
-  console.log({ products });
 
   const paths = products?.data?.map((product: any) => ({
     params: { id: product.category },
@@ -31,14 +31,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const { params } = context;
-  console.log({ params });
   const res = await fetch(
-    `http://localhost:5000/featured-products/${params.id}`
+    `https://origin-pc-server.vercel.app/featured-products/${params.id}`
   );
 
-  // const res = await fetch("http://localhost:5000/featured-products");
   const data = await res.json();
-  // console.log(data);
   return {
     props: {
       allProducts: data,

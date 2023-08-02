@@ -1,12 +1,15 @@
+import { SessionProvider } from "next-auth/react";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 
 const RootLayout = ({ children }: any) => {
   return (
     <>
-      <Navbar></Navbar>
-      {children}
-      <Footer></Footer>
+      <SessionProvider>
+        <Navbar></Navbar>
+        {children}
+        <Footer></Footer>
+      </SessionProvider>
     </>
   );
 };

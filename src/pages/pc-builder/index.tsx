@@ -13,7 +13,7 @@ const PcBuilderPage = ({ products }: any) => {
               <h2 className="card-title text-xl">{product?.category}</h2>
             </div>
             <div className="card-actions justify-center mt-4">
-              <Link href={`/featured-products/${product?.category}`}>
+              <Link href={`/pc-builder/${product?.category}`}>
                 <button className="btn btn-primary">Select</button>
               </Link>
             </div>
@@ -27,7 +27,9 @@ const PcBuilderPage = ({ products }: any) => {
 export default PcBuilderPage;
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:5000/featured-products");
+  const res = await fetch(
+    "https://origin-pc-server.vercel.app/featured-products"
+  );
   const data = await res.json();
   return {
     props: {
