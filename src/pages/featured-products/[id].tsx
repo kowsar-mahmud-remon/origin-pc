@@ -1,3 +1,4 @@
+import DetailsCard from "@/components/DetailsCard";
 import RootLayout from "@/components/Layout/RootLayout";
 import ProductsCard from "@/components/ProductsCard";
 import React from "react";
@@ -7,7 +8,8 @@ const FeaturedCategory = ({ allProducts }: any) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-20 px-5">
       {allProducts?.data?.map((product: any) => (
-        <ProductsCard key={product._id} products={product}></ProductsCard>
+        // <ProductsCard key={product._id} products={product}></ProductsCard>
+        <DetailsCard key={product._id} products={product}></DetailsCard>
       ))}
     </div>
   );
