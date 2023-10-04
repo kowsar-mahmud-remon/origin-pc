@@ -18,7 +18,7 @@ const FeaturedCategory = ({ products }: any) => {
         ))}
       </div>
       <div className="my-20 flex justify-center">
-        <Link href="#" onClick={() => handleToast()}>
+        <Link href="/pc-builder" onClick={() => handleToast()}>
           <button className="btn btn-secondary px-10">Add To Builder</button>
         </Link>
       </div>
